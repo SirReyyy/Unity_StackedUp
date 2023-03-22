@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIGameplay_Script : MonoBehaviour {
+public class UI_Script : MonoBehaviour {
 
     public StackHolder_Script _stackHolderScript;
-    public Label lblScore, lblCombo;
+    public VisualElement veScoring, veMainMenu, veGameOver;
+    public Label lblScore, lblCombo, lblEndScore;
+    public Button btnStart, btnRestart, btnHome;
 
     void OnEnable() {
         int currentScore = _stackHolderScript._scoreCount;
@@ -12,8 +14,23 @@ public class UIGameplay_Script : MonoBehaviour {
 
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
+        // Main Menu Container
+        veMainMenu = root.Q<VisualElement>("VE_MainMenu");
+        btnStart = root.Q<Button>("Btn_Start");
+
+        // Scoring Container
+        veScoring = root.Q<VisualElement>("VE_Scoring");
         lblScore = root.Q<Label>("Lbl_Score");
         lblCombo = root.Q<Label>("Lbl_Combo");
+
+        // Game Over Container
+        veGameOver = root.Q<VisualElement>("VE_GameOver");
+        btnRestart = root.Q<Button>("Btn_Restart");
+        btnHome = root.Q<Button>("Btn_Home");
+
+        veMainMenu.style.display = DisplayStyle.None;
+        veScoring.style.display = DisplayStyle.Flex;
+        veGameOver.style.display = DisplayStyle.None;
     } // -- OnEnable function
 
     public void UpdateLblScore(int score) {
@@ -35,7 +52,7 @@ public class UIGameplay_Script : MonoBehaviour {
                 lblCombo.text = "--- COMBO ---";
                 break;
             default:
-                lblCombo.text = "*** GREAT ***";
+                lblCombo.text = "*- COLOR COMBO -*";
                 break;
         }
         

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StackHolder_Script : MonoBehaviour {
 
-    public UIGameplay_Script _uiScript;
+    public UI_Script _uiScript;
 
     // Stack Color Array
     public Material stackMat;

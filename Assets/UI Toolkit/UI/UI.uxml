@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="VE_Root" style="width: 100%; height: 100%;">
+        <ui:VisualElement name="VE_MainMenu" style="display: flex; width: auto; height: auto; top: 15%; align-items: center; justify-content: flex-start;">
+            <ui:Label text="Stacked Up" display-tooltip-when-elided="true" name="Lbl_Title" style="-unity-text-align: middle-center; font-size: 70px;" />
+            <ui:Label text="COLOR COMBO" display-tooltip-when-elided="true" name="Lbl_Sub" style="-unity-text-align: middle-center; font-size: 30px;" />
+            <ui:Button text="START" display-tooltip-when-elided="true" name="Btn_Start" style="top: 180%; width: 40%; height: 40%; align-items: auto; justify-content: flex-start; left: auto; right: auto; font-size: 18px; color: rgb(255, 255, 255); border-left-color: rgb(68, 13, 212); border-right-color: rgb(68, 13, 212); border-top-color: rgb(68, 13, 212); border-bottom-color: rgb(68, 13, 212); background-color: rgb(54, 58, 66);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="VE_Scoring" style="top: 10%; display: none;">
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Lbl_Score" style="align-items: center; justify-content: center; font-size: 100px; -unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=a4d5a4bf41d8e6441a178908f031e1e9&amp;type=3#NotInter-Regular&apos;); text-shadow: 0 0 0 rgb(0, 0, 0); color: rgb(253, 253, 253);" />
+            <ui:Label display-tooltip-when-elided="true" name="Lbl_Combo" style="font-size: 30px; -unity-text-align: middle-center; visibility: visible; color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="VE_GameOver" style="display: none; width: auto; height: auto; top: 10%; align-items: center; justify-content: flex-start;">
+            <ui:Label text="Final Score" display-tooltip-when-elided="true" name="Lbl_FinalScore" style="-unity-text-align: middle-center; font-size: 30px;" />
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Lbl_EndScore" style="-unity-text-align: middle-center; font-size: 90px;" />
+            <ui:Button text="RESTART" display-tooltip-when-elided="true" name="Btn_Restart" style="top: 140%; width: 40%; height: 40%; align-items: auto; justify-content: flex-start; left: auto; right: auto; font-size: 18px; color: rgb(255, 255, 255); border-left-color: rgb(68, 13, 212); border-right-color: rgb(68, 13, 212); border-top-color: rgb(68, 13, 212); border-bottom-color: rgb(68, 13, 212); background-color: rgb(54, 58, 66);" />
+            <ui:Button text="HOME" display-tooltip-when-elided="true" name="Btn_Home" style="top: 150%; width: 40%; height: 40%; align-items: auto; justify-content: flex-start; left: auto; right: auto; font-size: 18px; color: rgb(255, 255, 255); border-left-color: rgb(68, 13, 212); border-right-color: rgb(68, 13, 212); border-top-color: rgb(68, 13, 212); border-bottom-color: rgb(68, 13, 212); background-color: rgb(54, 58, 66);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
