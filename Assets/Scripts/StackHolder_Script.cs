@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class StackHolder_Script : MonoBehaviour {
 
+    public UIGameplay_Script _uiScript;
+
     // Stack Color Array
     public Material stackMat;
 
@@ -10,7 +12,7 @@ public class StackHolder_Script : MonoBehaviour {
     private const float STACK_MOVE_SPEED = 3.0f;
     private const float ERROR_MARGIN = 0.1f;
     private const float STACK_BOUNDS_GAIN = 0.25f;
-    private const float COMBO_START_GAIN = 3.0f;
+    private const float COMBO_START_GAIN = 2.0f;
 
     private GameObject[] stackElements;
     private Vector2 stackBounds = new Vector2(BOUNDS_SIZE, BOUNDS_SIZE);
@@ -18,7 +20,9 @@ public class StackHolder_Script : MonoBehaviour {
     // Scoring Variables
     private int stackIndex;
     private int scoreCount = 0;
+    public int _scoreCount { get {return scoreCount;} }
     private int comboCount = 0;
+    public int _comboCount { get {return comboCount;} }
     
     private float tileTransition = 0.0f;
     private float tileSpeed = 2.5f;
@@ -52,6 +56,9 @@ public class StackHolder_Script : MonoBehaviour {
             if(PlaceTile()) {
                 SpawnNewTile();
                 scoreCount++;
+
+                _uiScript.UpdateLblScore(scoreCount);
+
             } else {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
             }
@@ -97,6 +104,8 @@ public class StackHolder_Script : MonoBehaviour {
 
             if(Mathf.Abs(deltaX) > ERROR_MARGIN) {
                 comboCount = 0;
+                _uiScript.UpdateLblCombo(comboCount);
+
                 stackBounds.x -= Mathf.Abs(deltaX);
 
                 if(stackBounds.x <= 0) {
@@ -125,6 +134,8 @@ public class StackHolder_Script : MonoBehaviour {
                 }
 
                 comboCount++;
+                _uiScript.UpdateLblCombo(comboCount);
+
                 t.localPosition = new Vector3(lastTilePosition.x, scoreCount, lastTilePosition.z);
             }
 
@@ -133,6 +144,8 @@ public class StackHolder_Script : MonoBehaviour {
 
             if(Mathf.Abs(deltaZ) > ERROR_MARGIN) {
                 comboCount = 0;
+                _uiScript.UpdateLblCombo(comboCount);
+
                 stackBounds.y -= Mathf.Abs(deltaZ);
 
                 if(stackBounds.y <= 0) {
@@ -161,6 +174,8 @@ public class StackHolder_Script : MonoBehaviour {
                 }
 
                 comboCount++;
+                _uiScript.UpdateLblCombo(comboCount);
+
                 t.localPosition = new Vector3(lastTilePosition.x, scoreCount, lastTilePosition.z);
             }
         }
@@ -198,7 +213,7 @@ public class StackHolder_Script : MonoBehaviour {
         ColorMesh(stackElements[stackIndex].GetComponent<MeshFilter>().mesh);
 
     } // -- SpawnNewTile function
-}
+} // -- End
 
 
 /*

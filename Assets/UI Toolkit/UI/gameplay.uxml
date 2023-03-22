@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="VE_Root" style="width: 100%; height: 100%;">
+        <ui:VisualElement name="VE_Container" style="top: 10%;">
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Lbl_Score" style="align-items: center; justify-content: center; font-size: 100px; -unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=a4d5a4bf41d8e6441a178908f031e1e9&amp;type=3#NotInter-Regular&apos;); text-shadow: 0 0 0 rgb(0, 0, 0); color: rgb(253, 253, 253);" />
+            <ui:Label display-tooltip-when-elided="true" name="Lbl_Combo" style="font-size: 30px; -unity-text-align: middle-center; visibility: visible; color: rgba(255, 255, 255, 255);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
