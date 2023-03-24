@@ -30,8 +30,9 @@ public class StackHolder_Script : MonoBehaviour {
 
     // Tile States
     private bool isMovingX = false;
-    private bool gameOver = false;
-
+    private bool mainMenuState = false;
+    private bool gameOverState = false;
+    
     private Vector3 targetPosition;
     private Vector3 lastTilePosition;
 
@@ -45,11 +46,15 @@ public class StackHolder_Script : MonoBehaviour {
         }
 
         stackIndex = transform.childCount - 1;
+        mainMenuState = true;
     } // -- Start function
 
 
     void Update() {
-        if(gameOver)
+        if(mainMenuState)
+            return;
+        
+        if(gameOverState)
             return;
         
         if(Input.GetMouseButtonDown(0)) {
@@ -58,11 +63,12 @@ public class StackHolder_Script : MonoBehaviour {
                 scoreCount++;
 
                 _uiScript.UpdateLblScore(scoreCount);
-
             } else {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+                // UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+                _uiScript.UpdateEndScore(scoreCount);
+                _uiScript.BtnFunction(2);
             }
-        }
+        }        
 
         MoveTile();
         transform.position = Vector3.Lerp(transform.position, targetPosition, STACK_MOVE_SPEED * Time.deltaTime);
@@ -79,8 +85,7 @@ public class StackHolder_Script : MonoBehaviour {
 
         for(int i = 1; i < vertices.Length; i++) {
             colors[i] = randColor;
-        }
-
+        };
         mesh.colors32 = colors;
     } // -- ColorMesh function
 
@@ -213,6 +218,29 @@ public class StackHolder_Script : MonoBehaviour {
         ColorMesh(stackElements[stackIndex].GetComponent<MeshFilter>().mesh);
 
     } // -- SpawnNewTile function
+
+    public void ChangeState(int gameState) {
+        switch(gameState) {
+            case 1: // First Play State
+                mainMenuState = false;
+                gameOverState = false;
+                break;
+            case 2: // Game Over State
+                mainMenuState = false;
+                gameOverState = true;
+                break;
+            case 3: // Home State
+                mainMenuState = true;
+                gameOverState = false;
+
+                UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+                break;
+            default: // Main Menu State
+                mainMenuState = true;
+                gameOverState = false;
+                break;
+        }
+    }
 } // -- End
 
 

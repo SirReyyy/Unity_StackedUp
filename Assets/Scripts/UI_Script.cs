@@ -6,7 +6,7 @@ public class UI_Script : MonoBehaviour {
     public StackHolder_Script _stackHolderScript;
     public VisualElement veScoring, veMainMenu, veGameOver;
     public Label lblScore, lblCombo, lblEndScore;
-    public Button btnStart, btnRestart, btnHome;
+    public Button btnStart, btnReturn;
 
     void OnEnable() {
         int currentScore = _stackHolderScript._scoreCount;
@@ -25,17 +25,23 @@ public class UI_Script : MonoBehaviour {
 
         // Game Over Container
         veGameOver = root.Q<VisualElement>("VE_GameOver");
-        btnRestart = root.Q<Button>("Btn_Restart");
-        btnHome = root.Q<Button>("Btn_Home");
+        lblEndScore = root.Q<Label>("Lbl_EndScore");
+        btnReturn = root.Q<Button>("Btn_Return");
 
-        veMainMenu.style.display = DisplayStyle.None;
-        veScoring.style.display = DisplayStyle.Flex;
-        veGameOver.style.display = DisplayStyle.None;
+        BtnFunction(0);
+        btnStart.clicked += () => BtnFunction(1);
+        btnReturn.clicked += () => BtnFunction(3);
+
+
     } // -- OnEnable function
 
     public void UpdateLblScore(int score) {
         lblScore.text = score.ToString();
     } // -- UpdateLblScore function
+    
+    public void UpdateEndScore(int score) {
+        lblEndScore.text = score.ToString();
+    } // -- UpdateEndScore function
 
     public void UpdateLblCombo(int combo) {
         switch(combo) {
@@ -57,6 +63,39 @@ public class UI_Script : MonoBehaviour {
         }
         
     } // -- UpdateLblCombo function
+
+    public void BtnFunction(int btnFunc) {
+        switch(btnFunc) {
+            case 1: // First Play State
+                veMainMenu.style.display = DisplayStyle.None;
+                veScoring.style.display = DisplayStyle.Flex;
+                veGameOver.style.display = DisplayStyle.None;
+
+                _stackHolderScript.ChangeState(1);
+                break;
+            case 2: // Game Over State 
+                veMainMenu.style.display = DisplayStyle.None;
+                veScoring.style.display = DisplayStyle.None;
+                veGameOver.style.display = DisplayStyle.Flex;
+
+                _stackHolderScript.ChangeState(2);
+                break;
+            case 3: // Home State
+                veMainMenu.style.display = DisplayStyle.Flex;
+                veScoring.style.display = DisplayStyle.None;
+                veGameOver.style.display = DisplayStyle.None;
+
+                _stackHolderScript.ChangeState(3);
+                break;
+            default: // Initial State
+                veMainMenu.style.display = DisplayStyle.Flex;
+                veScoring.style.display = DisplayStyle.None;
+                veGameOver.style.display = DisplayStyle.None;
+
+                _stackHolderScript.ChangeState(0);
+                break;
+        }
+    }
 } // -- End
 
 
