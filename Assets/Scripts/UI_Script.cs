@@ -5,7 +5,7 @@ public class UI_Script : MonoBehaviour {
 
     public StackHolder_Script _stackHolderScript;
     public VisualElement veScoring, veMainMenu, veGameOver;
-    public Label lblScore, lblCombo, lblEndScore;
+    public Label lblScore, lblCombo, lblEndScore, lblHighScore;
     public Button btnStart, btnReturn;
 
     void OnEnable() {
@@ -22,6 +22,7 @@ public class UI_Script : MonoBehaviour {
         veScoring = root.Q<VisualElement>("VE_Scoring");
         lblScore = root.Q<Label>("Lbl_Score");
         lblCombo = root.Q<Label>("Lbl_Combo");
+        lblHighScore = root.Q<Label>("Lbl_HighScore");
 
         // Game Over Container
         veGameOver = root.Q<VisualElement>("VE_GameOver");
